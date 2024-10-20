@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auftragsverwaltung</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css' rel='stylesheet' />
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core/locales/de.js'></script>
+</head>
+<body>
+    <header>
+        <h1>Auftragsverwaltung</h1>
+        <div class="button-container">
+            <div class="left-spacer"></div>
+            <button id="neuerAuftragButton" class="action-button">
+                <i class="fas fa-plus"></i> Neuer Auftrag
+            </button>
+            <button id="kalenderButton" class="action-button">
+                <i class="fas fa-calendar-alt"></i> Kalender
+            </button>
+        </div>
+    </header>
+    
+    <div id="auftragsContainer">
+        <div id="offen" class="spalte">
+            <h2>Offen</h2>
+        </div>
+        <div id="inBearbeitung" class="spalte">
+            <h2>In Bearbeitung</h2>
+        </div>
+        <div id="termin" class="spalte">
+            <h2>Termin</h2>
+        </div>
+        <div id="erledigt" class="spalte">
+            <h2>Erledigt</h2>
+        </div>
+        <div id="rechnung" class="spalte">
+            <h2>Rechnung</h2>
+        </div>
+    </div>
+
+    <div id="neuerAuftragModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Neuer Auftrag</h2>
+            <form id="neuerAuftragForm">
+                <input type="text" name="kunde" placeholder="Kunde" required>
+                <input type="text" name="adresse" placeholder="Adresse">
+                <input type="text" name="mieter" placeholder="Mieter">
+                <input type="tel" name="telefon" placeholder="Tel. Nr.">
+                <input type="email" name="email" placeholder="E-Mail">
+                <textarea name="problem" placeholder="Problem" required></textarea>
+                <select name="wichtigkeit" required>
+                    <option value="Normal">Normal</option>
+                    <option value="Wichtig">Wichtig</option>
+                    <option value="Dringend">Dringend</option>
+                </select>
+                <select name="status" required>
+                    <option value="Offen">Offen</option>
+                    <option value="In Bearbeitung">In Bearbeitung</option>
+                    <option value="Termin">Termin</option>
+                    <option value="Erledigt">Erledigt</option>
+                    <option value="Rechnung">Rechnung</option>
+                </select>
+                <input type="file" id="anhang" name="anhang" multiple>
+                <label for="anhang" class="file-upload-label">Anhänge auswählen</label>
+                <div id="ausgewaehlte-dateien"></div>
+                <button type="submit">Speichern</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="auftragDetailModal" class="modal">
+        <div class="modal-content">
+            <!-- Inhalt wird dynamisch gefüllt -->
+        </div>
+    </div>
+
+    <div id="kalenderModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Auftragskalender</h2>
+            <div id="kalender"></div>
+        </div>
+    </div>
+
+    <div id="bearbeitenAuftragModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Auftrag bearbeiten</h2>
+            <form id="bearbeitenAuftragForm">
+                <input type="text" id="bearbeiten-kunde" name="kunde" required>
+                <input type="text" name="adresse" placeholder="Adresse">
+                <input type="text" name="mieter" placeholder="Mieter">
+                <input type="tel" name="telefon" placeholder="Tel. Nr.">
+                <input type="email" name="email" placeholder="E-Mail">
+                <textarea name="problem" placeholder="Problem" required></textarea>
+                <select name="wichtigkeit" required>
+                    <option value="Normal">Normal</option>
+                    <option value="Wichtig">Wichtig</option>
+                    <option value="Dringend">Dringend</option>
+                </select>
+                <select name="status" required>
+                    <option value="Offen">Offen</option>
+                    <option value="In Bearbeitung">In Bearbeitung</option>
+                    <option value="Termin">Termin</option>
+                    <option value="Erledigt">Erledigt</option>
+                    <option value="Rechnung">Rechnung</option>
+                </select>
+                <input type="file" id="bearbeiten-anhang" name="anhang" multiple>
+                <label for="bearbeiten-anhang" class="file-upload-label">Neue Anhänge auswählen</label>
+                <div id="bearbeiten-ausgewaehlte-dateien"></div>
+                <h3>Bestehende Anhänge:</h3>
+                <ul id="bearbeiten-anhaenge-liste"></ul>
+                <button type="submit">Aktualisieren</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,469 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+#neuerAuftragButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#auftragsContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.spalte {
+    flex: 1;
+    min-height: 500px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.spalte h2 {
+    margin: 0;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+/* Spaltenfarben */
+#offen { background-color: #fff; }
+#offen h2 { background-color: #ffffff; color: #000000; }
+
+#inBearbeitung { background-color: #c67df0; }
+#inBearbeitung h2 { background-color: #c67df0; color: #000000; }
+
+#termin { background-color: #fff3cd; }
+#termin h2 { background-color: #fff3cd; color: #000000; }
+
+#erledigt { background-color: #85d689; }
+#erledigt h2 { background-color: #85d689; color: #000000; }
+
+#rechnung { background-color: #78aff7; }
+#rechnung h2 { background-color: #78aff7; color: #000000; }
+
+.auftrag {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.auftrag h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.auftrag p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+.auftrag-aktionen {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.aktion-btn {
+    margin-left: 5px;
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.aktion-btn:hover {
+    background-color: #e0e0e0;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="email"],
+.modal-content textarea,
+.modal-content select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.modal-content textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.modal-content button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.modal-content button:hover {
+    background-color: #0056b3;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form input, form textarea, form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+form textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#kommentarForm {
+    margin-top: 20px;
+}
+
+.print-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+#druckenButton {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 250px;
+}
+
+#druckenButton:hover {
+    background-color: #218838;
+}
+
+#druckenButton i {
+    font-size: 1.2em;
+}
+
+.wichtig {
+    border-left: 5px solid #dc3545;
+}
+
+.dringend {
+    border-left: 5px solid #ffc107;
+}
+
+.auftrag.dringend {
+    border-left: 5px solid #dc3545;
+    background-color: #ffe6e6;
+}
+
+.auftrag.wichtig {
+    border-left: 5px solid #ffc107;
+    background-color: #fff9e6;
+}
+
+.auftrag.normal {
+    border-left: 5px solid #28a745;
+    background-color: #e6ffe6;
+}
+
+.auftrag-aktionen {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.aktion-btn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.8em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.ansicht-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.bearbeiten-btn {
+    background-color: #ffc107;
+    color: black;
+}
+
+.loeschen-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.aktion-btn:hover {
+    opacity: 0.8;
+}
+
+#kalender {
+    height: 100%;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.fc-event {
+    cursor: pointer;
+}
+
+#kalenderModal .modal-content {
+    width: 80%;
+    max-width: 1200px;
+}
+
+.fc-timegrid-event {
+    min-height: 25px; /* oder ein anderer Wert nach Ihrer Wahl */
+}
+
+.fc-timegrid-slot {
+    height: 40px !important;
+}
+
+.fc-timegrid-event-harness {
+    margin-bottom: 1px;
+}
+
+.fc-event-main {
+    padding: 2px 4px;
+}
+
+.fc-event-title {
+    display: none; /* Versteckt den Standard-Titel */
+}
+
+.fc-more-link {
+    font-size: 0.9em;
+    font-weight: bold;
+    background-color: rgba(0,0,0,0.1);
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+.custom-event {
+    background-color: #3788d8;
+    color: white;
+    border-radius: 3px;
+    padding: 2px 4px;
+    font-size: 0.8em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.event-title {
+    font-weight: bold;
+}
+
+.event-time {
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+.fc-timegrid-event {
+    background: none !important;
+    border: none !important;
+}
+
+.action-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s;
+    white-space: nowrap;
+}
+
+.action-button:hover {
+    background-color: #0056b3;
+}
+
+.action-button i {
+    font-size: 1.2em;
+}
+
+#kalenderButton {
+    margin-left: auto; /* Schiebt den Button nach rechts */
+}
+
+/* Für die Container-Div, um die Buttons nebeneinander zu platzieren */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
+
+.left-spacer {
+    flex: 1;
+}
+
+#neuerAuftragButton {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#kalenderButton {
+    margin-left: 20px;
+}
+
+@media (max-width: 600px) {
+    .button-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .action-button {
+        margin: 10px 0;
+        justify-content: center;
+    }
+    
+    #kalenderButton {
+        margin-left: 0;
+    }
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.file-upload-label {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.file-upload-label:hover {
+  background-color: #e0e0e0;
+}
+
+#ausgewaehlte-dateien {
+  margin-bottom: 15px;
+  font-size: 0.9em;
+}
